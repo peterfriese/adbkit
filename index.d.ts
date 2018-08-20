@@ -18,6 +18,7 @@ declare namespace adbkit {
     trackDevices(): Promise<Tracker>;
     getProperties(serial: string): Promise<{}>;
     getPackages(serial: string): Promise<{}>;
+    startForegroundService(serial: string, options: any): Promise<boolean>
   }
 
   export interface Device {

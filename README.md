@@ -830,6 +830,24 @@ Starts the configured service on the device. Roughly analogous to `adb shell am 
 * Returns: `Promise`
 * Resolves with: `true`
 
+#### client.startForegroundService(serial, options[, callback])
+
+Starts the configured service on the device. Roughly analogous to `adb shell am startforegroundservice <options>`.
+
+* **serial** The serial number of the device. Corresponds to the device ID in `client.listDevices()`.
+* **options** The service configuration. The following options are available:
+    - **user** The user to run as. Defaults to `0`. If the option is unsupported by the device, an attempt will be made to run the same command again without the user option.
+    - **action** See `client.startActivity()` for details.
+    - **data** See `client.startActivity()` for details.
+    - **mimeType** See `client.startActivity()` for details.
+    - **category** See `client.startActivity()` for details.
+    - **component** See `client.startActivity()` for details.
+    - **flags** See `client.startActivity()` for details.
+    - **extras** See `client.startActivity()` for details.
+* Returns: `Promise`
+* Resolves with: `true`
+
+
 #### client.stat(serial, path[, callback])
 
 A convenience shortcut for `sync.stat()`, mainly for one-off use cases. The connection cannot be reused, resulting in poorer performance over multiple calls. However, the Sync client will be closed automatically for you, so that's one less thing to worry about.

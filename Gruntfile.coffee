@@ -26,6 +26,8 @@ module.exports = (grunt) ->
           level: 'ignore'
         no_backticks:
           level: 'ignore'
+        max_line_length:
+          value: 100
       src:
         src: '<%= coffee.src.cwd %>/<%= coffee.src.src %>'
       index:

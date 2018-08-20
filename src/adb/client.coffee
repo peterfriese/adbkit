@@ -37,6 +37,7 @@ ScreencapCommand = require './command/host-transport/screencap'
 ShellCommand = require './command/host-transport/shell'
 StartActivityCommand = require './command/host-transport/startactivity'
 StartServiceCommand = require './command/host-transport/startservice'
+StartForegroundServiceCommand = require './command/host-transport/startforegroundservice'
 SyncCommand = require './command/host-transport/sync'
 TcpCommand = require './command/host-transport/tcp'
 TcpIpCommand = require './command/host-transport/tcpip'
@@ -415,6 +416,17 @@ class Client
       .then (transport) ->
         options.user = 0 unless options.user or options.user is null
         new StartServiceCommand transport
+          .execute options
+      .catch NoUserOptionError, =>
+        options.user = null
+        this.startService serial, options
+      .nodeify callback
+
+  startForegroundService: (serial, options, callback) ->
+    this.transport serial
+      .then (transport) ->
+        options.user = 0 unless options.user or options.user is null
+        new StartForegroundServiceCommand transport
           .execute options
       .catch NoUserOptionError, =>
         options.user = null
